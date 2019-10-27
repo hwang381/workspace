@@ -22,7 +22,7 @@ workspace
 mkdir -p ~/.workspace
 cp config.example.json ~/.workspace/config.json
 ```
-Then edit `~/.workspace/config.json
+Then edit `~/.workspace/config.json`
 
 ## Caveat
 * In order to pull latest code for a branch, it by default reads `~/.ssh/id_rsa` as SSH key for your git repos
