@@ -9,8 +9,8 @@ import (
 
 const cliUsage = `
 Usage: workspace COMMAND ARGUMENTS
-	List all issues: workspace l/ls/list
-	Switch to issue: workspace s/sw/switch issue-key/"master"
+	List all branches: workspace l/ls/list
+	Switch to branch: workspace s/sw/switch branch-name/"master"
 `
 
 func main() {
@@ -33,26 +33,26 @@ func main() {
 	args := cliArgs[1:]
 
 	if command == "l" || command == "ls" || command == "list" {
-		log.Println("Collecting JIRA issues from repositories")
-		jiraIssues, err := collectIssues(config.Repositories)
+		log.Println("Collecting branches from repositories")
+		branches, err := collectBranches(config.Repositories)
 		if err != nil {
 			log.Fatal(err)
 		}
-		sort.Strings(jiraIssues)
-		for _, jiraIssue := range jiraIssues {
-			fmt.Println(jiraIssue)
+		sort.Strings(branches)
+		for _, branch := range branches {
+			fmt.Println(branch)
 		}
 	} else if command == "s" || command == "sw" || command == "switch" {
 		if len(args) != 1 {
 			fmt.Print(cliUsage)
 			return
 		}
-		targetJiraIssue := args[0]
+		targetBranch := args[0]
 
-		log.Printf("Switching all repos to %v", targetJiraIssue)
-		err = switchToIssue(
+		log.Printf("Switching all repos to %v", targetBranch)
+		err = switchToBranch(
 			config.Repositories,
-			targetJiraIssue,
+			targetBranch,
 			config.GitConfig,
 		)
 		if err != nil {
