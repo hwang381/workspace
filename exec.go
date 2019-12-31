@@ -11,6 +11,10 @@ import (
 )
 
 func executePostSwitch(repo Repository) error {
+	if repo.PostSwitch == nil || len(repo.PostSwitch) == 0 {
+		log.Printf("no post switch action to be executed")
+		return nil
+	}
 	stdoutStreamer := logstreamer.NewLogstreamerForStdout(fmt.Sprintf("[%v][stdout]", repo.ID))
 	defer func() {
 		err := stdoutStreamer.Close()

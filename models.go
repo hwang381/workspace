@@ -4,7 +4,7 @@ type Repository struct {
 	ID           string   `json:"id"`
 	Path         string   `json:"path"`
 	Dependencies []string `json:"dependencies"`
-	PostSwitch   []string `json:"postSwitch"`
+	PostSwitch   []string `json:"postSwitch,omitEmpty"`
 }
 
 type GitConfig struct {
