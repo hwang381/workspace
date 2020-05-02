@@ -1,4 +1,4 @@
-package main
+package libworkspace
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/atrox/homedir"
 )
 
-func readConfig() (*Config, error) {
+func ReadConfig() (*Config, error) {
 	homeDir, err := homedir.Dir()
 	if err != nil {
 		return nil, err

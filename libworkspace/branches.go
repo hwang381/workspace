@@ -1,11 +1,11 @@
-package main
+package libworkspace
 
 import (
 	"log"
 	"sync"
 )
 
-func collectBranches(repos []Repository) ([]string, error) {
+func CollectBranches(repos []Repository) ([]string, error) {
 	var allBranchNames []string
 	for _, repo := range repos {
 		branchNames, err := getBranchNames(repo)
@@ -28,7 +28,7 @@ func collectBranches(repos []Repository) ([]string, error) {
 	return branches, nil
 }
 
-func switchToBranch(repos []Repository, targetBranch string, gitConfig GitConfig) error {
+func SwitchToBranch(repos []Repository, targetBranch string, gitConfig GitConfig) error {
 	levelOrder, err := getLevelOrder(repos)
 	if err != nil {
 		return err

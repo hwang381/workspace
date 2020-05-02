@@ -1,4 +1,4 @@
-package main
+package libworkspace
 
 type Repository struct {
 	ID           string   `json:"id"`

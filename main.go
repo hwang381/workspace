@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/hwang381/workspace/libworkspace"
 	"log"
 	"os"
 	"sort"
@@ -19,7 +20,7 @@ func main() {
 	// log.SetOutput(ioutil.Discard)
 
 	log.Println("Reading config file")
-	config, err := readConfig()
+	config, err := libworkspace.ReadConfig()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -34,7 +35,7 @@ func main() {
 
 	if command == "l" || command == "ls" || command == "list" {
 		log.Println("Collecting branches from repositories")
-		branches, err := collectBranches(config.Repositories)
+		branches, err := libworkspace.CollectBranches(config.Repositories)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -50,7 +51,7 @@ func main() {
 		targetBranch := args[0]
 
 		log.Printf("Switching all repos to %v", targetBranch)
-		err = switchToBranch(
+		err = libworkspace.SwitchToBranch(
 			config.Repositories,
 			targetBranch,
 			config.GitConfig,

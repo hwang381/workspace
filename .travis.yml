@@ -8,16 +8,16 @@ install:
   - echo skip install
 script:
   - go get -t -v ./...
-  - gox -os="linux darwin windows" -arch="amd64" -output="workspace.." -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...
+  - gox -os="linux darwin windows" -arch="amd64" -verbose ./...
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
     secure: JpCfwz4il5L5Qg2a6cWsoCjpzVnK+AxqTSM+PvSCBYhkDF2VbOfCyFGSQOY9Rx+gGLRF9X3wl76BlG/R3Dh4CzKbWeAkJqzt16+UAQ8OiJ/GZtloZkpJQIEGlyOQPOshYElRVDE2d3IHOjZGX+/hXfpIiPsr8UCICxE0CVbjLNzjdsMZmLJtT/IBhMDXqzyu2yxzrAlotmXpdphxWYge8kt/CmLm4V/LDvJ0tk1oTTH2UwdXCb0YGUcAXwNrnkp5bYU4tRhYF5UY7aLhGN48t3KrXuFQJDptahufq+KHvb0NBiELBQWwrSxSxCzCiWsDEmo8W0CRzDfOJTrNmAtu2G+81BplLdT7T6ezfCOqZBwXPDGEtu87iW11ii2ywuBsKPBkGBHhuMrKO8KUPkfhkqTb1T45cGlZ2OUnRWUbmHWwndbGBVkf/jgVxuMNuBVMCCP7JjiIj8to9yiB73jupwkmQiwuFaVpW9d3ssl+iDa5wecshjjmJOXAD/bEAgtQraO4ACdGHJj3PECUf/YVAqK8VQ1D/AlTOMLRAPK9vXiOsZdfD8slnhpFtMAMLNR8kmUe92qoF0k/H2nP7z8nLuY+P8Za4LayfZPQATyodROs7X+Xfy608mEoUy8Dv5knVb9BtWs0zbyE80pZwKmZW54LizN8ybyV6Sa0baS3M4s=
   file:
-    - workspace.windows.amd64.exe
-    - workspace.darwin.amd64
-    - workspace.linux.amd64
+    - workspace_darwin_amd64
+    - workspace_linux_amd64
+    - workspace_windows_amd64.exe
   on:
     repo: hwang381/workspace
     branch: master
