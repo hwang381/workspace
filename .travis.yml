@@ -20,4 +20,5 @@ deploy:
     - workspace_windows_amd64.exe
   on:
     repo: hwang381/workspace
+    tags: false
     branch: master
