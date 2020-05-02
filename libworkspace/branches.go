@@ -28,7 +28,7 @@ func CollectBranches(repos []Repository) ([]string, error) {
 	return branches, nil
 }
 
-func SwitchToBranch(repos []Repository, targetBranch string, gitConfig GitConfig) error {
+func SwitchToBranch(repos []Repository, targetBranch string) error {
 	levelOrder, err := getLevelOrder(repos)
 	if err != nil {
 		return err
@@ -44,7 +44,7 @@ func SwitchToBranch(repos []Repository, targetBranch string, gitConfig GitConfig
 			if err != nil {
 				return err
 			}
-			err = pull(repo, targetBranch, gitConfig)
+			err = pull(repo, targetBranch)
 			if err != nil {
 				return err
 			}

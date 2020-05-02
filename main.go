@@ -5,6 +5,7 @@ import (
 	"github.com/hwang381/workspace/libworkspace"
 	"log"
 	"os"
+	"os/exec"
 	"sort"
 )
 
@@ -18,6 +19,10 @@ func main() {
 	// TODO: this should be controlled by -v
 	// log.SetFlags(0)
 	// log.SetOutput(ioutil.Discard)
+	_, err := exec.LookPath("git")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	log.Println("Reading config file")
 	config, err := libworkspace.ReadConfig()
@@ -54,7 +59,6 @@ func main() {
 		err = libworkspace.SwitchToBranch(
 			config.Repositories,
 			targetBranch,
-			config.GitConfig,
 		)
 		if err != nil {
 			log.Fatal(err)
