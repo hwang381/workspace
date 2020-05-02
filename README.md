@@ -3,6 +3,9 @@ Multi-repo context switcher
 
 `workspace` manages your multi-repo project and makes it easy to context switch them for different ongoing work items while respecting inter-repo dependencies
 
+## Prerequisites
+* `git` cli is install and can be found under your `$PATH`
+
 ## Install
 Get the binaries from [releases](https://github.com/hwang381/workspace/releases), then rename it to `workspace` and put it somewhere under your `$PATH`.
 
