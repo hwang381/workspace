@@ -1,13 +1,14 @@
 language: go
+go:
+  - "1.14"
 sudo: false
 before_install:
-- go get github.com/mitchellh/gox
+  - go get github.com/mitchellh/gox
 install:
-- echo skip install
+  - echo skip install
 script:
-- go get -t -v ./...
-- gox -os="linux darwin windows" -arch="amd64" -output="workspace.." -ldflags "-X
-  main.Rev=`git rev-parse --short HEAD`" -verbose ./...
+  - go get -t -v ./...
+  - gox -os="linux darwin windows" -arch="amd64" -output="workspace.." -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...
 deploy:
   provider: releases
   skip_cleanup: true

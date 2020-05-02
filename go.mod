@@ -1,6 +1,6 @@
 module github.com/hwang381/workspace
 
-go 1.12
+go 1.14
 
 require (
 	github.com/atrox/homedir v1.0.0
