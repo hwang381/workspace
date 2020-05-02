@@ -27,11 +27,6 @@ func executePostSwitchCommand(repoId, repoPath string, command Command) error {
 	}()
 	cmd := exec.Command(command.Exe[0], command.Exe[1:]...)
 	cmd.Env = os.Environ()
-	if command.Environ != nil {
-		for key, value := range command.Environ {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%s=%s", key, value))
-		}
-	}
 	cmd.Dir = repoPath
 	cmd.Stdout = stdoutStreamer
 	cmd.Stderr = stderrStreamer
