@@ -18,11 +18,7 @@ func ReadConfig() (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
-	config := Config{
-		GitConfig: GitConfig{
-			PrivateKeyPath: path.Join(homeDir, ".ssh", "id_rsa"),
-		},
-	}
+	config := Config{}
 	err = json.Unmarshal(configBytes, &config)
 	if err != nil {
 		return nil, err
