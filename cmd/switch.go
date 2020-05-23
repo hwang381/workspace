@@ -9,7 +9,7 @@ import (
 var switchCmd = &cobra.Command{
 	Use:     "switch",
 	Aliases: []string{"s", "sw"},
-	Short:   "List all branches",
+	Short:   "Switch branch of all repositories into a branch",
 	// TODO: -w
 	Args: cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
