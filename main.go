@@ -1,19 +1,23 @@
 package main
 
 import (
+	"flag"
+	"github.com/golang/glog"
 	"github.com/hwang381/workspace/cmd"
-	"log"
+	"os"
 	"os/exec"
 )
 
 func main() {
-	// TODO: this should be controlled by -v
-	// log.SetFlags(0)
-	// log.SetOutput(ioutil.Discard)
+	flag.Parse()
+
 	_, err := exec.LookPath("git")
 	if err != nil {
-		log.Fatal(err)
+		glog.Errorln("git cannot be found, %v", err)
 	}
 
-	cmd.Execute()
+	if err := cmd.RootCmd.Execute(); err != nil {
+		glog.Errorln(err)
+		os.Exit(1)
+	}
 }

@@ -3,6 +3,7 @@ package libworkspace
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/golang/glog"
 	"io/ioutil"
 	"os"
 	"path"
@@ -35,7 +36,7 @@ func migrateSingleConfig() error {
 		return err
 	}
 	if exists {
-		fmt.Printf("Migrating single config at %s for multiple workspaces\n", singleConfigPath)
+		glog.Infoln("Migrating single config at %v for multiple workspaces", singleConfigPath)
 		newConfigPath := path.Join(homeDir, ".workspace", "default.workspace.json")
 		err := os.Rename(singleConfigPath, newConfigPath)
 		if err != nil {
@@ -91,7 +92,7 @@ func ReadConfig(workspaceName string) (*Config, error) {
 
 	config, ok := configs[workspaceName]
 	if !ok {
-		return nil, fmt.Errorf("Workspace %s cannot be found\n", workspaceName)
+		return nil, fmt.Errorf("Workspace %v cannot be found\n", workspaceName)
 	}
 	return config, nil
 }

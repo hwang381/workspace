@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/golang/glog"
 	"github.com/hwang381/workspace/libworkspace"
 	"github.com/spf13/cobra"
-	"log"
 	"sort"
 )
 
@@ -15,13 +15,13 @@ var listCmd = &cobra.Command{
 	// TODO: -w
 	Args: cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		log.Println("Reading configuration")
+		glog.Infoln("Reading configuration")
 		config, err := libworkspace.ReadConfig(WorkspaceName)
 		if err != nil {
 			return err
 		}
 
-		log.Printf("Collecting branches for workspace %s\n", WorkspaceName)
+		glog.Infoln("Collecting branches for workspace %v", WorkspaceName)
 		branches, err := libworkspace.CollectBranches(config.Repositories)
 		if err != nil {
 			return err
@@ -36,5 +36,5 @@ var listCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(listCmd)
+	RootCmd.AddCommand(listCmd)
 }

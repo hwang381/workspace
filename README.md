@@ -33,6 +33,8 @@ By default, actions execute on the `default` workspace. Add the `-w <name of wor
 ## Use
 Type `workkspace` for help info
 
+To log verbosely, use `--logtostderr` flag
+
 ## Develop
 
 ### Prerequisites

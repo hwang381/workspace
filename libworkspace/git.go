@@ -1,7 +1,7 @@
 package libworkspace
 
 import (
-	"log"
+	"github.com/golang/glog"
 	"os/exec"
 	"strings"
 )
@@ -41,10 +41,10 @@ func switchBranch(repo Repository, targetBranchName string) error {
 		return err
 	}
 	if !hasBranch {
-		log.Printf("Repo %v does not have branch %v, switching to master", repo.Path, targetBranchName)
+		glog.Infoln("Repo %v does not have branch %v, switching to master", repo.Path, targetBranchName)
 		targetBranchName = "master"
 	}
-	log.Printf("Switching %v to %v", repo.Path, targetBranchName)
+	glog.Infoln("Switching %v to %v", repo.Path, targetBranchName)
 	cmd := exec.Command(
 		"git",
 		"checkout",
@@ -64,10 +64,10 @@ func pull(repo Repository, branchName string) error {
 		return err
 	}
 	if !hasBranch {
-		log.Printf("Repo %v does not have branch %v, pulling master", repo.Path, branchName)
+		glog.Infoln("Repo %v does not have branch %v, pulling master", repo.Path, branchName)
 		branchName = "master"
 	}
-	log.Printf("Pulling %v with %v", repo.Path, branchName)
+	glog.Infoln("Pulling %v with %v", repo.Path, branchName)
 	cmd := exec.Command(
 		"git",
 		"pull",

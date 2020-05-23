@@ -2,7 +2,7 @@ package libworkspace
 
 import (
 	"fmt"
-	"log"
+	"github.com/golang/glog"
 	"os"
 	"os/exec"
 	"sync"
@@ -15,14 +15,14 @@ func executePostSwitchCommand(repoId, repoPath string, command Command) error {
 	defer func() {
 		err := stdoutStreamer.Close()
 		if err != nil {
-			log.Printf("fail to close stdout stream, %v", err)
+			glog.Errorln("Fail to close stdout stream, %v", err)
 		}
 	}()
 	stderrStreamer := logstreamer.NewLogstreamerForStderr(fmt.Sprintf("[%v][stderr]", repoId))
 	defer func() {
 		err := stderrStreamer.Close()
 		if err != nil {
-			log.Printf("fail to close stderr stream, %v", err)
+			glog.Errorln("Fail to close stderr stream, %v", err)
 		}
 	}()
 	cmd := exec.Command(command.Exe[0], command.Exe[1:]...)
@@ -46,7 +46,7 @@ func executePostSwitch(repo Repository) error {
 	}
 
 	if len(commands) == 0 {
-		log.Printf("no post switch action to be executed")
+		glog.Infoln("No post switch action to be executed")
 		return nil
 	}
 
@@ -68,7 +68,7 @@ func executePostSwitchAsync(repo Repository, wg *sync.WaitGroup) error {
 	go func() {
 		err := executePostSwitch(repo)
 		if err != nil {
-			log.Panicf("fail to execute post switch, %v", err)
+			glog.Errorln("Fail to execute post switch, %v", err)
 		}
 		wg.Done()
 	}()

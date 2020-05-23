@@ -38,7 +38,7 @@ func getLevelOrder(repos []Repository) ([][]Repository, error) {
 				for _, dependencyID := range repo.Dependencies {
 					dependencyRepo, dependencyExists := idToRepo[dependencyID]
 					if !dependencyExists {
-						return -1, fmt.Errorf("dependency %v does not exist", dependencyID)
+						return -1, fmt.Errorf("Dependency %v does not exist\n", dependencyID)
 					}
 					dependencyLevel, err := assignOrder(dependencyRepo)
 					if err != nil {
@@ -64,7 +64,7 @@ func getLevelOrder(repos []Repository) ([][]Repository, error) {
 		if repo, exists := idToRepo[id]; exists {
 			levelOrder[level] = append(levelOrder[level], repo)
 		} else {
-			return nil, fmt.Errorf("%v does not exist", id)
+			return nil, fmt.Errorf("Repo %v does not exist\n", id)
 		}
 	}
 

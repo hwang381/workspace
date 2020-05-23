@@ -1,7 +1,7 @@
 package libworkspace
 
 import (
-	"log"
+	"github.com/golang/glog"
 	"sync"
 )
 
@@ -24,7 +24,7 @@ func CollectBranches(repos []Repository) ([]string, error) {
 		}
 	}
 
-	log.Printf("Found branches %v", branches)
+	glog.Infoln("Found branches %v", branches)
 	return branches, nil
 }
 
@@ -33,13 +33,13 @@ func SwitchToBranch(repos []Repository, targetBranch string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("Level ordering is %v", levelOrder)
+	glog.Infoln("Level ordering is %v", levelOrder)
 
 	for _, level := range levelOrder {
 		var wg sync.WaitGroup
 		wg.Add(len(level))
 		for _, repo := range level {
-			log.Printf("Switching repo %v to %v", repo.ID, targetBranch)
+			glog.Infoln("Switching repo %v to %v", repo.ID, targetBranch)
 			err := switchBranch(repo, targetBranch)
 			if err != nil {
 				return err
@@ -49,7 +49,7 @@ func SwitchToBranch(repos []Repository, targetBranch string) error {
 				return err
 			}
 
-			log.Printf("Executing post switch for repo %v", repo.ID)
+			glog.Infoln("Executing post switch for repo %v", repo.ID)
 			err = executePostSwitchAsync(repo, &wg)
 			if err != nil {
 				return err
