@@ -4,7 +4,7 @@ Multi-repo context switcher
 `workspace` manages your multi-repo project and makes it easy to context switch them for different ongoing work items while respecting inter-repo dependencies
 
 ## Prerequisites
-* `git` cli is install and can be found under your `$PATH`
+* `git` is install and is available under your `$PATH`
 
 ## Install
 Get the binaries from [releases](https://github.com/hwang381/workspace/releases), then rename it to `workspace` and put it somewhere under your `$PATH`.
@@ -12,13 +12,28 @@ Get the binaries from [releases](https://github.com/hwang381/workspace/releases)
 ## Configure
 ```bash
 mkdir -p $HOME/.workspace
-cp config.example.json $HOME/.workspace/config.json
+cp default.workspace.json $HOME/.workspace/default.workspace.json
 ```
 
-Then edit `$HOME/.workspace/config.json`
+Then edit `$HOME/.workspace/default.workspace.json`
+
+You can also have multiple workspaces. Just create new configuration files under `$HOME/.workspace` whose filenames end with `.workspace.json`
+
+For example, if you have those two files under `$HOME/.workspace`
+
+```
+default.workspace.json
+pet_project.workspace.json
+```
+
+Then you have two workspaces, one called `default` and another called `pet_project`
+
+By default, actions execute on the `default` workspace. Add the `-w <name of workspace>` flag to execute actions on an alternative workspace
 
 ## Use
 Type `workkspace` for help info
+
+To log verbosely, use `--logtostderr` flag
 
 ## Develop
 

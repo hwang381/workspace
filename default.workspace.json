@@ -7,12 +7,20 @@
     {
       "id": "repo_2",
       "path": "/path/to/repo_2",
-      "postSwitch": ["program_1", "arg_1"]
+      "postSwitchCommands": [
+        {
+          "exe": ["program_1", "arg_1"]
+        }
+      ]
     },
     {
       "id": "repo_3",
       "path": "/path/to/repo_3",
-      "postSwitch": ["program_2", "arg_1", "arg_2"],
+      "postSwitchCommands": [
+        {
+          "exe": ["program_2", "arg_1", "arg_2"]
+        }
+      ],
       "dependencies": [
         "repo_1",
         "repo_2"
@@ -21,7 +29,11 @@
     {
       "id": "webapp",
       "path": "/path/to/repo_4",
-      "postSwitch": ["program_3", "arg_1", "arg_2"],
+      "postSwitchCommands": [
+        {
+          "exe": ["program_3", "arg_1", "arg_2"]
+        }
+      ],
       "dependencies": [
         "repo_1",
         "repo_2",
