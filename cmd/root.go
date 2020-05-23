@@ -6,11 +6,15 @@ import (
 	"os"
 )
 
+var WorkspaceName string
+
 var rootCmd = &cobra.Command{
 	Use:   "workspace",
 	Short: "Multi-repo context switcher",
-	Long: "workspace manages your multi-repo project and makes it easy to context switch them for different ongoing " +
-		"work items while respecting inter-repo dependencies",
+}
+
+func init() {
+	rootCmd.PersistentFlags().StringVarP(&WorkspaceName, "workspace", "w", "default", "workspace name")
 }
 
 func Execute() {
