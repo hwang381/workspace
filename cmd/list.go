@@ -9,8 +9,9 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all branches",
+	Use:     "list",
+	Aliases: []string{"l", "ls"},
+	Short:   "List all branches",
 	// TODO: -w
 	Args: cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {

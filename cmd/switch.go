@@ -7,8 +7,9 @@ import (
 )
 
 var switchCmd = &cobra.Command{
-	Use:   "switch",
-	Short: "List all branches",
+	Use:     "switch",
+	Aliases: []string{"s", "sw"},
+	Short:   "List all branches",
 	// TODO: -w
 	Args: cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
