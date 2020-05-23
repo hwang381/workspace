@@ -45,7 +45,7 @@ func migrateSingleConfig() error {
 	return nil
 }
 
-func ReadConfigs() (map[string]*Config, error) {
+func readConfigs() (map[string]*Config, error) {
 	homeDir, err := homedir.Dir()
 	if err != nil {
 		return nil, err
@@ -81,4 +81,17 @@ func ReadConfigs() (map[string]*Config, error) {
 	}
 
 	return configs, nil
+}
+
+func ReadConfig(workspaceName string) (*Config, error) {
+	configs, err := readConfigs()
+	if err != nil {
+		return nil, err
+	}
+
+	config, ok := configs[workspaceName]
+	if !ok {
+		return nil, fmt.Errorf("Workspace %s cannot be found\n", workspaceName)
+	}
+	return config, nil
 }

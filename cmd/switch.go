@@ -9,19 +9,18 @@ import (
 var switchCmd = &cobra.Command{
 	Use:     "switch",
 	Aliases: []string{"s", "sw"},
-	Short:   "Switch branch of all repositories into a branch",
+	Short:   "Switch all repositories into a branch",
 	// TODO: -w
 	Args: cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		log.Println("Reading configurations")
-		configs, err := libworkspace.ReadConfigs()
+		log.Println("Reading configuration")
+		config, err := libworkspace.ReadConfig(WorkspaceName)
 		if err != nil {
 			return err
 		}
 
 		targetBranch := args[0]
 		log.Printf("Switching all repos to %s for workspace %s\n", targetBranch, WorkspaceName)
-		config := configs[WorkspaceName]
 		err = libworkspace.SwitchToBranch(
 			config.Repositories,
 			targetBranch,
