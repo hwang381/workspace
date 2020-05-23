@@ -17,12 +17,13 @@ var listCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// TODO: dup
 		log.Println("Reading config file")
-		config, err := libworkspace.ReadConfig()
+		configs, err := libworkspace.ReadConfigs()
 		if err != nil {
 			return err
 		}
 
 		log.Println("Collecting branches")
+		config := configs["default"]
 		branches, err := libworkspace.CollectBranches(config.Repositories)
 		if err != nil {
 			return err

@@ -15,13 +15,14 @@ var switchCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// TODO: dup
 		log.Println("Reading config file")
-		config, err := libworkspace.ReadConfig()
+		configs, err := libworkspace.ReadConfigs()
 		if err != nil {
 			return err
 		}
 
 		targetBranch := args[0]
 		log.Printf("Switching all repos to %v", targetBranch)
+		config := configs["default"]
 		err = libworkspace.SwitchToBranch(
 			config.Repositories,
 			targetBranch,
