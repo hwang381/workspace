@@ -11,9 +11,8 @@ import (
 var listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"l", "ls"},
-	Short:   "List all branches",
-	// TODO: -w
-	Args: cobra.NoArgs,
+	Short:   "List all branches (aliases l, ls)",
+	Args:    cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		glog.Infoln("Reading configuration")
 		config, err := libworkspace.ReadConfig(WorkspaceName)
