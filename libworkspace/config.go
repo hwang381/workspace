@@ -46,7 +46,7 @@ func migrateSingleConfig() error {
 	return nil
 }
 
-func readConfigs() (map[string]*Config, error) {
+func ReadConfigs() (map[string]*Config, error) {
 	homeDir, err := homedir.Dir()
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func readConfigs() (map[string]*Config, error) {
 }
 
 func ReadConfig(workspaceName string) (*Config, error) {
-	configs, err := readConfigs()
+	configs, err := ReadConfigs()
 	if err != nil {
 		return nil, err
 	}

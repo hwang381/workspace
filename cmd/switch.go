@@ -9,9 +9,8 @@ import (
 var switchCmd = &cobra.Command{
 	Use:     "switch",
 	Aliases: []string{"s", "sw"},
-	Short:   "Switch all repositories into a branch",
-	// TODO: -w
-	Args: cobra.ExactArgs(1),
+	Short:   "Switch all repositories into a branch (aliases s, sw)",
+	Args:    cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		glog.Infoln("Reading configuration")
 		config, err := libworkspace.ReadConfig(WorkspaceName)
