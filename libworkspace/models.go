@@ -9,7 +9,8 @@ type Repository struct {
 }
 
 type Command struct {
-	Exe []string `json:"exe"`
+	Exe []string          `json:"exe"`
+	Env map[string]string `json:"env,omitEmpty"`
 }
 
 type Config struct {
