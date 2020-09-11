@@ -7,6 +7,7 @@ type Repository struct {
 	PostSwitch         []string  `json:"postSwitch,omitEmpty"`
 	PostSwitchCommands []Command `json:"postSwitchCommands,omitEmpty"`
 	OpenWith           string    `json:"openWith,omitEmpty"`
+	WaitAfterOpen      int       `json:"waitAfterOpen,omitEmpty"`
 }
 
 type Command struct {

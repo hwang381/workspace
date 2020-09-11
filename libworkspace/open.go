@@ -5,6 +5,7 @@ import (
 	"github.com/golang/glog"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func Open(repo Repository) error {
@@ -22,6 +23,8 @@ func Open(repo Repository) error {
 	if err != nil {
 		return err
 	}
+
+	time.Sleep(time.Second * 5)
 
 	return nil
 }
