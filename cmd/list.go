@@ -20,7 +20,7 @@ var listCmd = &cobra.Command{
 			return err
 		}
 
-		glog.Infoln("Collecting branches for workspace %v", WorkspaceName)
+		glog.Infof("Collecting branches for workspace %s\n", WorkspaceName)
 		branches, err := libworkspace.CollectBranches(config.Repositories)
 		if err != nil {
 			return err

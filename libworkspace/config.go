@@ -36,7 +36,7 @@ func migrateSingleConfig() error {
 		return err
 	}
 	if exists {
-		glog.Infoln("Migrating single config at %v for multiple workspaces", singleConfigPath)
+		glog.Infof("Migrating single config at %s for multiple workspaces\n", singleConfigPath)
 		newConfigPath := path.Join(homeDir, ".workspace", "default.workspace.json")
 		err := os.Rename(singleConfigPath, newConfigPath)
 		if err != nil {

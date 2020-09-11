@@ -2,6 +2,7 @@ package libworkspace
 
 import (
 	"fmt"
+	"github.com/golang/glog"
 	"os"
 	"os/exec"
 )
@@ -12,16 +13,12 @@ func Open(repo Repository) error {
 		return nil
 	}
 
+	glog.Infof("Running %s %s\n", repo.OpenWith, repo.Path)
 	cmd := exec.Command(repo.OpenWith, repo.Path)
 	cmd.Env = os.Environ()
 	cmd.Dir = repo.Path
 
 	err := cmd.Start()
-	if err != nil {
-		return err
-	}
-
-	err = cmd.Process.Release()
 	if err != nil {
 		return err
 	}

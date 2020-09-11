@@ -18,7 +18,7 @@ var openCmd = &cobra.Command{
 			return err
 		}
 
-		glog.Infoln("Opening %s\n", WorkspaceName)
+		glog.Infof("Opening %s\n", WorkspaceName)
 		for _, repo := range config.Repositories {
 			err = libworkspace.Open(repo)
 			if err != nil {
