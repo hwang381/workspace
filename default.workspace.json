@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "webapp",
+      "id": "repo_4",
       "path": "/path/to/repo_4",
       "postSwitchCommands": [
         {

@@ -24,7 +24,7 @@ func CollectBranches(repos []Repository) ([]string, error) {
 		}
 	}
 
-	glog.Infoln("Found branches %v", branches)
+	glog.Infof("Found branches %v\n", branches)
 	return branches, nil
 }
 
@@ -33,13 +33,13 @@ func SwitchToBranch(repos []Repository, targetBranch string) error {
 	if err != nil {
 		return err
 	}
-	glog.Infoln("Level ordering is %v", levelOrder)
+	glog.Infof("Level ordering is %v\n", levelOrder)
 
 	for _, level := range levelOrder {
 		var wg sync.WaitGroup
 		wg.Add(len(level))
 		for _, repo := range level {
-			glog.Infoln("Switching repo %v to %v", repo.ID, targetBranch)
+			glog.Infof("Switching repo %s to %s\n", repo.ID, targetBranch)
 			err := switchBranch(repo, targetBranch)
 			if err != nil {
 				return err
@@ -49,7 +49,7 @@ func SwitchToBranch(repos []Repository, targetBranch string) error {
 				return err
 			}
 
-			glog.Infoln("Executing post switch for repo %v", repo.ID)
+			glog.Infof("Executing post switch for repo %s\n", repo.ID)
 			err = executePostSwitchAsync(repo, &wg)
 			if err != nil {
 				return err

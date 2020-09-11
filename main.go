@@ -13,7 +13,7 @@ func main() {
 
 	_, err := exec.LookPath("git")
 	if err != nil {
-		glog.Errorln("git cannot be found, %v", err)
+		glog.Errorf("git cannot be found, %v\n", err)
 	}
 
 	if err := cmd.RootCmd.Execute(); err != nil {

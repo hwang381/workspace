@@ -41,10 +41,10 @@ func switchBranch(repo Repository, targetBranchName string) error {
 		return err
 	}
 	if !hasBranch {
-		glog.Infoln("Repo %v does not have branch %v, switching to master", repo.Path, targetBranchName)
+		glog.Infof("Repo %s does not have branch %s, switching to master\n", repo.Path, targetBranchName)
 		targetBranchName = "master"
 	}
-	glog.Infoln("Switching %v to %v", repo.Path, targetBranchName)
+	glog.Infof("Switching %s to %s\n", repo.Path, targetBranchName)
 	cmd := exec.Command(
 		"git",
 		"checkout",
@@ -64,10 +64,10 @@ func pull(repo Repository, branchName string) error {
 		return err
 	}
 	if !hasBranch {
-		glog.Infoln("Repo %v does not have branch %v, pulling master", repo.Path, branchName)
+		glog.Infof("Repo %s does not have branch %s, pulling master\n", repo.Path, branchName)
 		branchName = "master"
 	}
-	glog.Infoln("Pulling %v with %v", repo.Path, branchName)
+	glog.Infof("Pulling %s with %s\n", repo.Path, branchName)
 	cmd := exec.Command(
 		"git",
 		"pull",

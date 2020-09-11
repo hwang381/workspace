@@ -19,7 +19,7 @@ var switchCmd = &cobra.Command{
 		}
 
 		targetBranch := args[0]
-		glog.Infoln("Switching all repos to %v for workspace %v", targetBranch, WorkspaceName)
+		glog.Infof("Switching all repos to %s for workspace %s\n", targetBranch, WorkspaceName)
 		err = libworkspace.SwitchToBranch(
 			config.Repositories,
 			targetBranch,

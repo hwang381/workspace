@@ -15,14 +15,14 @@ func executePostSwitchCommand(repoId, repoPath string, command Command) error {
 	defer func() {
 		err := stdoutStreamer.Close()
 		if err != nil {
-			glog.Errorln("Fail to close stdout stream, %v", err)
+			glog.Errorf("Fail to close stdout stream, %v\n", err)
 		}
 	}()
 	stderrStreamer := logstreamer.NewLogstreamerForStderr(fmt.Sprintf("[%v][stderr]", repoId))
 	defer func() {
 		err := stderrStreamer.Close()
 		if err != nil {
-			glog.Errorln("Fail to close stderr stream, %v", err)
+			glog.Errorf("Fail to close stderr stream, %v\n", err)
 		}
 	}()
 	cmd := exec.Command(command.Exe[0], command.Exe[1:]...)
@@ -75,7 +75,7 @@ func executePostSwitchAsync(repo Repository, wg *sync.WaitGroup) error {
 	go func() {
 		err := executePostSwitch(repo)
 		if err != nil {
-			glog.Errorln("Fail to execute post switch, %v", err)
+			glog.Errorf("Fail to execute post switch, %v\n", err)
 		}
 		wg.Done()
 	}()
